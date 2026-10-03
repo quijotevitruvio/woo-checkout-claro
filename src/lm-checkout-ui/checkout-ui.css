@@ -1,0 +1,155 @@
+/* Woo Checkout Claro — Checkout UI 1.0.0. Lo imprime lm-checkout-ui.php SOLO
+ * en finalizar compra y SOLO si el interruptor lm_checkout_ui no está en 'off'.
+ * Todo va bajo body.lm-cui y dentro del bloque de checkout: nada sale de esta
+ * página. Superficies sólidas; las sombras sí pueden llevar transparencia.
+ * NO toca: lógica de pago, textos de los métodos, términos, campos ni su orden.
+ * Color de acento: ajuste lm_cui_color (sobrescribe --lmcui-acento). */
+
+body.lm-cui {
+	--lmcui-tinta: #1f2937;
+	--lmcui-linea: #e5e7eb;
+	--lmcui-borde: #c9ced6;
+	--lmcui-acento: #1f2937;
+	--lmcui-suave: #f5f6f8;
+	--lmcui-mut: #5b6472;
+}
+/* Separadores de WooCommerce: sólidos (antes color-mix con transparencia). */
+body.lm-cui .wp-block-woocommerce-checkout { --wc-separator-color: var(--lmcui-linea); }
+
+/* ── 1. Títulos en tinta ──────────────────────────────────────────────── */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkout-step__title,
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-title,
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkout-order-summary__title-text {
+	color: var(--lmcui-tinta) !important;
+	font-weight: 700 !important;
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkout-step__heading-container { margin-bottom: 12px; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-form .wc-block-components-checkout-step { margin-bottom: 20px; }
+
+/* ── 2. Campos: 48 px, radio 10, borde gris sólido ────────────────────── */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-text-input input:is([type=email],[type=text],[type=tel],[type=number],[type=url],[type=password]) {
+	height: 48px !important;
+	border-radius: 10px !important;
+	border: 1px solid var(--lmcui-borde) !important;
+	background-color: #fff !important;
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-text-input label { top: 24px; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-text-input.is-active label,
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-text-input input:-webkit-autofill + label { top: 6px; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-blocks-components-select .wc-blocks-components-select__container { border-radius: 10px; background: #fff; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-blocks-components-select .wc-blocks-components-select__select {
+	height: 48px !important;
+	border-radius: 10px !important;
+	border: 1px solid var(--lmcui-borde) !important;
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-textarea,
+body.lm-cui .wp-block-woocommerce-checkout textarea { border-radius: 10px !important; border-color: var(--lmcui-borde) !important; }
+/* Foco: el mismo grosor que WooCommerce, en tinta. */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-text-input input:focus,
+body.lm-cui .wp-block-woocommerce-checkout .wc-blocks-components-select .wc-blocks-components-select__select:focus {
+	border: 1.5px solid var(--lmcui-tinta) !important;
+}
+/* Error: el rojo de WooCommerce sigue mandando sobre el gris. */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-text-input.has-error input:is([type=email],[type=text],[type=tel],[type=number],[type=url],[type=password]),
+body.lm-cui .wp-block-woocommerce-checkout .has-error .wc-blocks-components-select .wc-blocks-components-select__select,
+body.lm-cui .wp-block-woocommerce-checkout .has-error input,
+body.lm-cui .wp-block-woocommerce-checkout .has-error select,
+body.lm-cui .wp-block-woocommerce-checkout .has-error .wc-blocks-components-select__select { border-color: #cc1818 !important; }
+/* Casillas y radios: bordes sólidos. */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkbox .wc-block-components-checkbox__input { border-color: #8b93a1; border-radius: 6px; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control .wc-block-components-radio-control__input { border: 1.5px solid #8b93a1; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control .wc-block-components-radio-control__input:checked { border: 1.5px solid var(--lmcui-acento); }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control .wc-block-components-radio-control__input:checked::before { background: var(--lmcui-acento); }
+
+/* ── 3. Pestañas Envío / Recoge: segmentado, sin borde negro grueso ───── */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__shipping-method .wc-block-checkout__shipping-method-container {
+	background-color: var(--lmcui-suave);
+	border-radius: 12px;
+	padding: 4px;
+	gap: 4px;
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__shipping-method-option {
+	min-height: 48px;
+	padding: 6px 10px;
+	border: 0 !important;
+	border-radius: 9px;
+	color: var(--lmcui-mut);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.25;
+	text-align: center;
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__shipping-method-option.wc-block-checkout__shipping-method-option--selected {
+	background: #fff;
+	color: var(--lmcui-acento);
+	box-shadow: inset 0 0 0 2px var(--lmcui-acento);
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__shipping-method-option-icon { width: 22px !important; height: 22px !important; margin-right: 6px; flex: none; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__shipping-method-option-title-wrapper { display: flex; align-items: center; justify-content: center; }
+
+/* ── 4. Listas de opciones (envío y pago): radio 12, elegida en acento ── */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control--highlight-checked::after { border-color: var(--lmcui-linea); border-radius: 12px; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option--checked-option-highlighted,
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control--highlight-checked label.wc-block-components-radio-control__option--checked-option-highlighted {
+	border-radius: 12px;
+	box-shadow: inset 0 0 0 2px var(--lmcui-acento);
+}
+
+/* ── 5. Métodos de pago: logo en la misma línea del nombre, sin caja ──── */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control__label > div { gap: 6px 10px !important; align-items: center !important; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control__label div:has(> img:only-child) {
+	padding: 0 !important;
+	background: none !important;
+	box-shadow: none !important;
+	flex: none;
+}
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-radio-control__label div:has(> img:only-child) > img {
+	height: 24px !important;
+	width: auto !important;
+	max-width: 48px !important;
+	max-height: 24px !important;
+	object-fit: contain;
+	border-radius: 6px;
+	margin: 0 !important;
+}
+
+/* ── 6. Resumen: uno solo en móvil, sin la descripción larga ──────────── */
+/* En móvil WooCommerce lo pinta dos veces: plegado arriba y abierto encima
+ * del botón. Se conserva el de arriba (lleva productos, cupón y total). */
+body.lm-cui .wp-block-woocommerce-checkout .wp-block-woocommerce-checkout-order-summary-block.checkout-order-summary-block-fill-wrapper { display: none !important; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-order-summary-item .wc-block-components-product-metadata__description { display: none; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkout-order-summary__title { padding: 14px 0; margin-top: 4px; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkout-order-summary__title-text { font-size: 17px !important; }
+
+/* Insignia de cantidad del resumen: sólida (antes negro al 10 %). */
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-product-badge { background-color: #eceef1 !important; }
+
+/* ── 7. Botón «Pagar $ …»: el precio lo pinta WooCommerce; solo se muestra
+ *       si el filtro cambió la etiqueta (body.lm-cui-pagar). Si no: el de siempre. */
+body.lm-cui .wc-block-components-checkout-place-order-button .wc-block-components-checkout-place-order-button__separator { display: none !important; }
+body.lm-cui:not(.lm-cui-pagar) .wc-block-components-checkout-place-order-button .wc-block-components-checkout-place-order-button__price { display: none !important; }
+body.lm-cui.lm-cui-pagar .wc-block-components-checkout-place-order-button .wc-block-components-checkout-place-order-button__text { gap: 0.3em; justify-content: center; }
+body.lm-cui .wc-block-components-checkout-place-order-button .wc-block-components-checkout-place-order-button__price { font-variant-numeric: tabular-nums; white-space: nowrap; }
+body.lm-cui .wp-block-woocommerce-checkout .wc-block-components-checkout-place-order-button { min-height: 48px; }
+
+/* ── 8. Móvil: la barra del botón queda pegada abajo ──────────────────── */
+@media (max-width: 782px) {
+	html { scroll-padding-bottom: calc(var(--lm-cui-barra, 70px) + 16px); }
+	body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__actions {
+		position: -webkit-sticky;
+		position: sticky;
+		bottom: 0;
+		z-index: 40;
+		margin: 0 calc(-1 * var(--lm-cui-gd, var(--wp--style--root--padding-right, 0px))) 0 calc(-1 * var(--lm-cui-gi, var(--wp--style--root--padding-left, 0px)));
+		padding: 10px var(--lm-cui-gd, var(--wp--style--root--padding-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) var(--lm-cui-gi, var(--wp--style--root--padding-left, 0px));
+		background: #fff;
+		border-top: 1px solid var(--lmcui-linea);
+		box-shadow: 0 -6px 16px rgba(15, 23, 42, 0.08);
+	}
+	body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__actions .wc-block-checkout__actions_row { margin: 0; }
+	body.lm-cui .wp-block-woocommerce-checkout .wc-block-checkout__actions .wc-block-components-checkout-place-order-button { min-height: 52px; font-size: 16px !important; }
+	/* Con el teclado abierto vuelve a su sitio: no tapa el campo. */
+	body.lm-cui.lm-cui-escribiendo .wp-block-woocommerce-checkout .wc-block-checkout__actions { position: relative; box-shadow: none; }
+	/* Los botones flotantes de otros plugins (chat, avisos) se suben por encima
+	 * de la barra con el ajuste lm_cui_flotantes (lista de selectores). */
+}

@@ -1,0 +1,79 @@
+/* Woo Checkout Claro — Pedido recibido 1.0.0. Colores en variables (--lmpr-*),
+ * con valores neutros por defecto; el tema puede sobrescribirlas. El modo
+ * oscuro se aplica con html[data-theme="dark"] o la clase .is-dark-theme. */
+
+:root {
+	--lmpr-tinta: #1f2937;
+	--lmpr-mut: #4b5563;
+	--lmpr-gris: #6b7280;
+	--lmpr-linea: #e5e7eb;
+	--lmpr-fondo: #fff;
+	--lmpr-aviso: #b91c1c;
+	--lmpr-aviso-oscuro: #fca5a5;
+}
+
+/* Cuenta regresiva en horas y minutos (el contenido original queda oculto
+ * mientras corre; al vencer, el JS quita la clase y vuelve). */
+.lmpr-plazo-on > :not(.lmpr-plazo) { display: none; }
+.lmpr-plazo { font-size: 14px; line-height: 1.4; color: var(--lmpr-mut); }
+.lmpr-plazo strong { font-weight: 700; color: var(--lmpr-tinta); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lmpr-rojo .lmpr-plazo strong { color: var(--lmpr-aviso); }
+html[data-theme="dark"] .lmpr-rojo .lmpr-plazo strong,
+.is-dark-theme .lmpr-rojo .lmpr-plazo strong { color: var(--lmpr-aviso-oscuro); }
+
+/* Una sola caja de dirección a todo el ancho */
+.lmpr-una-dir > .wp-block-column { flex-basis: 100% !important; }
+
+/* Documento enmascarado */
+.lmpr-doc { font-variant-numeric: tabular-nums; letter-spacing: .04em; white-space: nowrap; }
+
+/* Resumen: el correo largo se parte sin desbordar */
+.lmpr-sum .wc-block-order-confirmation-summary-list-item__value { overflow-wrap: anywhere; word-break: break-word; }
+
+@media (max-width: 600px) {
+	.wc-block-order-confirmation-summary-list.lmpr-sum {
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 14px 16px;
+		margin: 0;
+		padding: 14px 16px;
+		list-style: none;
+		border: 1px solid var(--lmpr-linea);
+		border-radius: 10px;
+		background: var(--lmpr-fondo);
+		font-family: inherit;
+	}
+	.lmpr-sum .wc-block-order-confirmation-summary-list-item {
+		display: flex !important;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		flex: none !important;
+	}
+	.lmpr-sum .lmpr-sum--email { grid-column: 1 / -1; order: 9; }
+	.lmpr-sum .wc-block-order-confirmation-summary-list-item__key {
+		font-size: 12px;
+		line-height: 1.3;
+		font-weight: 600;
+		letter-spacing: .06em;
+		text-transform: uppercase;
+		color: var(--lmpr-gris);
+	}
+	.lmpr-sum .lmpr-dp { display: none; }
+	.lmpr-sum .wc-block-order-confirmation-summary-list-item__value {
+		font-size: 15px;
+		line-height: 1.4;
+		font-weight: 600;
+		color: var(--lmpr-tinta);
+		font-variant-numeric: tabular-nums;
+	}
+	html[data-theme="dark"] .wc-block-order-confirmation-summary-list.lmpr-sum,
+	.is-dark-theme .wc-block-order-confirmation-summary-list.lmpr-sum { background: #111827; border-color: #374151; }
+	html[data-theme="dark"] .lmpr-sum .wc-block-order-confirmation-summary-list-item__key,
+	.is-dark-theme .lmpr-sum .wc-block-order-confirmation-summary-list-item__key { color: #9ca3af; }
+	html[data-theme="dark"] .lmpr-sum .wc-block-order-confirmation-summary-list-item__value,
+	.is-dark-theme .lmpr-sum .wc-block-order-confirmation-summary-list-item__value { color: #e5e7eb; }
+}

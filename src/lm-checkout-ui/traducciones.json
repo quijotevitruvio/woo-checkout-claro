@@ -1,0 +1,9 @@
+{
+	"Ship": "Envío",
+	"Add coupons": "Añadir cupón",
+	"Create an account with %s": "Crear una cuenta en %s",
+	"Total price for <quantity/> <productName/> item: <price/>": [
+		"Precio total de <quantity/> <productName/> artículo: <price/>",
+		"Precio total de <quantity/> <productName/> artículos: <price/>"
+	]
+}
